@@ -1,4 +1,4 @@
-FROM bcit/centos:7-latest as build
+FROM bcit.io/almalinux:9-latest as build
 
 # from https://duo.com/docs/authproxy-reference#installation
 RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install  \
@@ -11,7 +11,7 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install  \
 
 # modified from https://github.com/jumanjihouse/docker-duoauthproxy/
 WORKDIR /src
-ADD https://dl.duosecurity.com/duoauthproxy-5.2.1-src.tgz /src/
+ADD https://dl.duosecurity.com/duoauthproxy-6.6.0-src.tgz /src/
 RUN tar xzf duoauthproxy-*-src.tgz \
  && cd duoauthproxy-*-src \
  && make \ 
@@ -19,10 +19,10 @@ RUN tar xzf duoauthproxy-*-src.tgz \
  && cd duoauthproxy-build \
  && ./install --install-dir=/opt/duoauthproxy --service-user=duo --log-group=duo --create-init-script=no
 
-FROM bcit/centos:7-latest
+FROM bcit.io/almalinux:9-latest
 
 LABEL maintainer="jesse@weisner.ca, chriswood.ca@gmail.com"
-LABEL build_id="1617314033"
+LABEL build_id="1769637436"
 
 RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install  \
     openssl

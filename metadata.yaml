@@ -1,12 +1,14 @@
 ---
 image_name: duoauthproxy
-org_name: bcit
+registries:
+  - url: bcit.io
+test_command: sleep infinity
 labels:
   maintainer: "jesse@weisner.ca, chriswood.ca@gmail.com"
-suffixes:
+tags:
   - 'latest'
-  - '5.2-latest'
-  - '5.2.1-latest'
+  - '6.6-latest'
+  - '6.6.0-latest'
 vars:
   yum_build_deps:
     - 'gcc '
@@ -17,4 +19,4 @@ vars:
     - 'diffutils'
   yum_runtime_deps:
     - 'openssl'
-  duoauthproxy_ver: '5.2.1'
+  duoauthproxy_ver: '6.6.0'

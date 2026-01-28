@@ -1,4 +1,4 @@
-FROM bcit/centos:7-latest as build
+FROM bcit.io/almalinux:9-latest as build
 
 # from https://duo.com/docs/authproxy-reference#installation
 RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install <% image.vars['yum_build_deps'].each do |pkg| -%> \
@@ -16,7 +16,7 @@ RUN tar xzf duoauthproxy-*-src.tgz \
  && cd duoauthproxy-build \
  && ./install --install-dir=/opt/duoauthproxy --service-user=duo --log-group=duo --create-init-script=no
 
-FROM bcit/centos:7-latest
+FROM bcit.io/almalinux:9-latest
 
 <%= snippet('labels', binding) -%>
 
